@@ -4,10 +4,17 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  workflow_dispatch: 
+env:
+  BASEURL: ${{ vars.BASEURL}}
+  EMAIL: ${{ secrets.EMAIL}}
+  PASSWORD: ${{ secrets.PASSWORD}}
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      CI: true
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
